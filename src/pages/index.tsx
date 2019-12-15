@@ -3,20 +3,20 @@ import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { SEO } from "../components/seo"
 import { rhythm } from "../utils/typography"
 
-class BlogIndex extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+export default function BlogIndex(props: { data: any, location: Location }): JSX.Element {
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
+  const siteTitle = props.data.site.siteMetadata.title
+  const posts = props.data.allMarkdownRemark.edges
+
+  return (
+    <div>
+      <Layout location={props.location} title={siteTitle}>
         <SEO title="All posts" />
         <Bio />
-        {posts.map(({ node }) => {
+        {posts.map(({ node }: { node: any }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
             <article key={node.fields.slug}>
@@ -43,11 +43,11 @@ class BlogIndex extends React.Component {
           )
         })}
       </Layout>
-    )
-  }
+    </div>
+  )
 }
 
-export default BlogIndex
+
 
 export const pageQuery = graphql`
   query {
