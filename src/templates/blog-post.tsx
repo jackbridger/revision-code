@@ -66,19 +66,19 @@ export default function BlogPostTemplate(props: {
             }}
           >
             <li>
-              {props.context.previous && (
-                <Link to={props.context.previous.fields.slug} rel="prev">
-                  ← {props.context.previous.frontmatter.title}
+              {/* {previous && (
+                <Link to={previous.fields.slug} rel="prev">
+                  ← {previous.frontmatter.title}
+                </Link>
+              )} */}
+            </li>
+            {/* <li>
+              {next && (
+                <Link to={next.fields.slug} rel="next">
+                  {next.frontmatter.title} →
                 </Link>
               )}
-            </li>
-            <li>
-              {props.context.next && (
-                <Link to={props.context.next.fields.slug} rel="next">
-                  {props.context.next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
+            </li> */}
           </ul>
         </nav>
       </Layout>
@@ -87,22 +87,22 @@ export default function BlogPostTemplate(props: {
 }
 
 
-export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        description
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query BlogPostBySlug($slug: String!) {
+//     site {
+//       siteMetadata {
+//         title
+//       }
+//     }
+//     markdownRemark(fields: { slug: { eq: $slug } }) {
+//       id
+//       excerpt(pruneLength: 160)
+//       html
+//       frontmatter {
+//         title
+//         date(formatString: "MMMM DD, YYYY")
+//         description
+//       }
+//     }
+//   }
+// `

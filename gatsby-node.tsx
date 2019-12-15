@@ -1,11 +1,11 @@
-const path = require(`path`)
+import path from 'path'
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+exports.createPages = async (props: { graphql: any, actions: any }): Promise<string> => {
+  const { createPage } = props.actions
 
   const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
-  const result = await graphql(
+  const result = await props.graphql(
     `
       {
         allMarkdownRemark(
@@ -34,7 +34,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create blog posts pages.
   const posts = result.data.allMarkdownRemark.edges
 
-  posts.forEach((post, index) => {
+  posts.forEach((post: any, index: Number) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
     const next = index === 0 ? null : posts[index - 1].node
 
@@ -48,6 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+  return
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

@@ -15,16 +15,16 @@ export default function BlogIndex(props: { data: any, location: Location, meta: 
       <Layout location={props.location} title={siteTitle}>
         <Bio />
         {posts.map(({ node }: { node: any }) => {
-          const title = node.frontmatter.title || node.fields.slug
+          const title = node.frontmatter.title || 'to be confirmed'
           return (
-            <article key={node.fields.slug}>
+            <article>
               <header>
                 <h3
                   style={{
                     marginBottom: rhythm(1 / 4),
                   }}
                 >
-                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                  <Link style={{ boxShadow: `none` }} to={`google.com`}>
                     {title}
                   </Link>
                 </h3>
@@ -58,9 +58,6 @@ export const pageQuery = graphql`
       edges {
         node {
           excerpt
-          fields {
-            slug
-          }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
