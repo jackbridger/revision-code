@@ -3,7 +3,6 @@ import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
-import { SEO } from "../components/seo"
 import { rhythm } from "../utils/typography"
 
 export default function BlogIndex(props: { data: any, location: Location, meta: [] }): JSX.Element {
@@ -14,7 +13,6 @@ export default function BlogIndex(props: { data: any, location: Location, meta: 
   return (
     <div>
       <Layout location={props.location} title={siteTitle}>
-        <SEO title="All posts" meta={props.meta} />
         <Bio />
         {posts.map(({ node }: { node: any }) => {
           const title = node.frontmatter.title || node.fields.slug
