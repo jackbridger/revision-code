@@ -13,7 +13,7 @@ import { useStaticQuery, graphql } from "gatsby"
 export const SEO = (props: {
   description?: string,
   lang?: `en`,
-  meta?: [],
+  meta: [],
   title: string
 }): JSX.Element => {
 
@@ -35,7 +35,7 @@ export const SEO = (props: {
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: props.lang
       }}
       title={props.title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}

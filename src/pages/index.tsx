@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 import { SEO } from "../components/seo"
 import { rhythm } from "../utils/typography"
 
-export default function BlogIndex(props: { data: any, location: Location }): JSX.Element {
+export default function BlogIndex(props: { data: any, location: Location, meta: [] }): JSX.Element {
 
   const siteTitle = props.data.site.siteMetadata.title
   const posts = props.data.allMarkdownRemark.edges
@@ -14,7 +14,7 @@ export default function BlogIndex(props: { data: any, location: Location }): JSX
   return (
     <div>
       <Layout location={props.location} title={siteTitle}>
-        <SEO title="All posts" />
+        <SEO title="All posts" meta={props.meta} />
         <Bio />
         {posts.map(({ node }: { node: any }) => {
           const title = node.frontmatter.title || node.fields.slug
